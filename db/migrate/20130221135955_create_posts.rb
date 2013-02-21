@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       p.string :title
       p.string :author
       p.integer :like_count, :default => 0
-      t.timestamps
+      p.timestamps
     end
   end
 end
