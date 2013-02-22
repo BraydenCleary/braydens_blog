@@ -1,0 +1,10 @@
+<%= @post.title %>
+<%= @post.author %>
+<%= @post.body %>
+<%= @post.like_count %>
+<form action="/posts/<%= @post.id %>" method="post">
+  <div style="delete-button">
+    <input name="_method" type="hidden" value="delete" />
+    <input type='submit' value='delete?'>
+  </div>
+</form>

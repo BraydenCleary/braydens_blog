@@ -25,6 +25,8 @@ get '/posts/new' do
 end
 
 get'/posts/:id' do
+  @post = Post.find(params[:id])
+  erb :posts_show
 end
 
 delete '/posts/:id' do
