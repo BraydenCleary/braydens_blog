@@ -3,13 +3,34 @@
 <% end %>
 
 <h1>All Posts</h2>
-<ul>
+<ul class="post-list">
 <% @posts.each do |post| %>
-  Title: <a href="/posts/<%= post.id %>"><%= post.title %></a>
-  <li> <%= calculate_time_difference(Time.now - post.updated_at)%></li>
-  <li><a href="/posts/<%= post.id %>/like">Like this post!</a>
-  <li>Likes: <%= post.like_count %></li>
+  <div class='post'>
+    Title: <a href="/posts/<%= post.id %>"><%= post.title %></a>
+    <li> <%= calculate_time_difference(Time.now - post.updated_at)%></li>
+    <li><a href="/posts/<%= post.id %>/like">Like this post!</a>
+    <li>Likes: <%= post.like_count %></li> <br />
+  </div>
 <% end %>
 </ul>
 
 
+<h1>Create new post</h1>
+
+<div class='create-post'>
+  <form action='/posts' method='post'>
+    <label for='title'>Title:</label>
+    <input type='text' name='title'><br>
+
+    <label for='author'>Author:</label>
+    <input type='text' name='author'><br>
+
+    <label for='body'>Body:</label>
+    <textarea name='body'></textarea><br>
+
+    <label for="post_tags">Tags:</label>
+    <input id="post_tags" name="post[tags]" placeholder="Tag1, tag2, etc...">
+
+    <input type='submit' value='Submit Post'>
+  </form>
+</div>

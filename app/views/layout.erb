@@ -6,14 +6,19 @@
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
   -->
+
   <link rel="stylesheet" href="/css/normalize.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+  <script src="/javascripts/application.js"></script>
 
   <title></title>
 </head>
 <body>
   <div class='nav-bar'>
-    <a href='/posts/new'>Create Post!</a>
+    <a href='/posts/new'>Create Post</a>
     <a href='/posts'>Home</a>
+    <a href='/tags'>Browse Tags</a>
   </div>
 
   <%= yield %>

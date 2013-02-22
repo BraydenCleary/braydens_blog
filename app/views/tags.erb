@@ -1,3 +1,5 @@
-<% @posts.each do |post| %>
-  <%= post.title %>
+<ul>
+<% @tags.each do |tag| %>
+  <li><a href="/tags/<%= tag.name %>"><%= tag.name %></a></li>
 <% end %>
+</ul>
