@@ -1,12 +1,12 @@
-<%= @post.title %>
-<%= @post.author %>
-<%= @post.body %>
-<%= @post.like_count %>
+<%= @post.title %><br>
+<%= @post.author %><br>
+<%= @post.body %><br>
+<%= @post.like_count %><br>
 
 <ul>
   Tags:
 <% @post.tags.each do |tag| %>
-  <li><%= tag.name %></li>
+  <li><a href="/tags/<%= tag.name %>"><%= tag.name %></li>
 <% end %>
 </ul>
 <a href="/posts/<%=@post.id%>/edit">Edit</a>

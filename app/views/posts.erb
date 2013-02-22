@@ -6,7 +6,8 @@
 <ul>
 <% @posts.each do |post| %>
   Title: <a href="/posts/<%= post.id %>"><%= post.title %></a>
-  <li>Updated On: <%= post.updated_at %></li>
+  <li> <%= calculate_time_difference(Time.now - post.updated_at)%></li>
+  <li><a href="/posts/<%= post.id %>/like">Like this post!</a>
   <li>Likes: <%= post.like_count %></li>
 <% end %>
 </ul>

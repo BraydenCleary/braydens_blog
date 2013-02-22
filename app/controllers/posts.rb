@@ -7,9 +7,20 @@ get '/posts' do
   erb :posts
 end
 
+get '/posts/:id/like' do
+  @post = Post.find(params[:id])
+  @post.like_count += 1
+  @post.save
+  @posts = Post.all.sort { |a,b| b.like_count <=> a.like_count}
+  redirect to '/posts'
+end
+
 post '/posts' do #create
-  tags = params['post']['tags'].split ','
-  tags.map! { |tag| Tag.create(:name => tag) }
+  puts params
+  tags = params['post']['tags'].split(/[\s,]+/)
+  tags.map! do |tag| 
+    Tag.create(:name => tag)
+  end
   @post = Post.new( :title => params['title'],
                     :author => params['author'],
                     :body =>   params['body'])
