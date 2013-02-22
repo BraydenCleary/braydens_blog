@@ -1,0 +1,19 @@
+<div class='edit-post'>
+  <form action="/posts/<%= @post.id %>" method="post">
+    <input type='hidden' name='id' value="<%= @post.id %>">
+    <label for='title'>Title:</label>
+    <input type='text' name='title' value="<%= @post.title %>"><br>
+
+    <label for='author'>Author:</label>
+    <input type='text' name='author' value="<%= @post.author %>"><br>
+
+    <label for='body'>Body:</label>
+    <textarea name='body'><%= @post.body %></textarea><br>
+
+    <label for="post_tags">Tags:</label>
+    <input id="post_tags" name="post[tags]" value="<%= @post.tags %>" >
+
+    <input type='submit' value='Update Post'>
+    <input name="_method" type="hidden" value="put" />
+  </form>
+</div>

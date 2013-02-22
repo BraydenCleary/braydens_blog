@@ -6,8 +6,7 @@
 <ul>
 <% @posts.each do |post| %>
   Title: <a href="/posts/<%= post.id %>"><%= post.title %></a>
-  <li>Author: <%= post.author %></li>
-  <li><p>Body: <%= post.body %><p></li>
+  <li>Updated On: <%= post.updated_at %></li>
   <li>Likes: <%= post.like_count %></li>
 <% end %>
 </ul>

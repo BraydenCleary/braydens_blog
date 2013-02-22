@@ -7,17 +7,30 @@ get '/posts' do
   erb :posts
 end
 
-post '/posts' do
-  @post = Post.new(params)
-  if @post.save
-    session['message'] = "Post \"#{@post.title}\" created."
-    @posts = Post.all
-    erb :posts  #should probably be redirecting but want to display error message
-                #so I decided to render the posts index
-  else
-    session['message'] = "Post creation unsuccessful. Please try again."
-    erb :posts_new
-  end
+post '/posts' do #create
+  tags = params['post']['tags'].split ','
+  tags.map! { |tag| Tag.create(:name => tag) }
+  @post = Post.new()
+    
+    if @post.save
+      session['message'] = "Post \"#{@post.title}\" created."
+      @posts = Post.all
+      erb :posts  #should probably be redirecting but want to display error message
+                  #so I decided to render the posts index
+    else
+      session['message'] = "Post creation unsuccessful. Please try again."
+      erb :posts_new
+    end
+end
+
+put '/posts/:id' do #update
+  @post = Post.find(params[:id])
+  @post.update_attributes(:title => params[:title],
+                          :body =>  params[:body],
+                          :author => params[:author] )
+  @posts = Post.all
+  session['message'] = "Post \"#{@post.title}\" updated."
+  erb :posts
 end
 
 get '/posts/new' do
@@ -29,8 +42,12 @@ get'/posts/:id' do
   erb :posts_show
 end
 
-delete '/posts/:id' do
-  puts params
+get '/posts/:id/edit' do
+  @post = Post.find(params[:id])
+  erb :posts_edit
+end
+
+delete '/posts/:id' do #delete
   post = Post.find(params[:id])
   post.destroy
   redirect to('/posts')

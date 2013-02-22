@@ -2,9 +2,11 @@
 <%= @post.author %>
 <%= @post.body %>
 <%= @post.like_count %>
+<a href="/posts/<%=@post.id%>/edit">Edit</a>
 <form action="/posts/<%= @post.id %>" method="post">
   <div style="delete-button">
     <input name="_method" type="hidden" value="delete" />
-    <input type='submit' value='delete?'>
+    <input type='submit' value='Delete?'>
   </div>
 </form>
+
