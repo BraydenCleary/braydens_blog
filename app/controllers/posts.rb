@@ -10,17 +10,19 @@ end
 post '/posts' do #create
   tags = params['post']['tags'].split ','
   tags.map! { |tag| Tag.create(:name => tag) }
-  @post = Post.new()
-    
-    if @post.save
-      session['message'] = "Post \"#{@post.title}\" created."
-      @posts = Post.all
-      erb :posts  #should probably be redirecting but want to display error message
-                  #so I decided to render the posts index
-    else
-      session['message'] = "Post creation unsuccessful. Please try again."
-      erb :posts_new
-    end
+  @post = Post.new( :title => params['title'],
+                    :author => params['author'],
+                    :body =>   params['body'])
+  @post.tags << tags
+  if @post.save
+    session['message'] = "Post \"#{@post.title}\" created."
+    @posts = Post.all
+    erb :posts  #should probably be redirecting but want to display error message
+                #so I decided to render the posts index
+  else
+    session['message'] = "Post creation unsuccessful. Please try again."
+    erb :posts_new
+  end
 end
 
 put '/posts/:id' do #update

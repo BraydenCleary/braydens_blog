@@ -2,6 +2,13 @@
 <%= @post.author %>
 <%= @post.body %>
 <%= @post.like_count %>
+
+<ul>
+  Tags:
+<% @post.tags.each do |tag| %>
+  <li><%= tag.name %></li>
+<% end %>
+</ul>
 <a href="/posts/<%=@post.id%>/edit">Edit</a>
 <form action="/posts/<%= @post.id %>" method="post">
   <div style="delete-button">
