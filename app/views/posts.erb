@@ -1,0 +1,21 @@
+<% if session['message']%>
+  <%= session['message'] %>
+<% end %>
+
+<h1>All Posts</h2>
+<ul>
+<% @posts.each do |post| %>
+  Title: <%= post.title %> 
+  <form action="/posts/<%= post.id %>" method="post">
+    <div style="delete-button">
+      <input name="_method" type="hidden" value="delete" />
+      <input type='submit' value='delete'>
+    </div>
+  </form>
+  <li>Author: <%= post.author %></li>
+  <li><p>Body: <%= post.body %><p></li>
+  <li>Likes: <%= post.like_count %></li>
+<% end %>
+</ul>
+
+

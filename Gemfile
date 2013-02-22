@@ -13,6 +13,8 @@ gem 'thin'
 gem 'activesupport'
 gem 'activerecord'
 
+gem 'sinatra-flash'
+
 gem 'rake'
 
 group :test do
