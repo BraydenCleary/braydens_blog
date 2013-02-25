@@ -16,7 +16,7 @@ get '/posts/:id/like' do
 end
 
 post '/posts' do #create
-  puts params
+  content_type :json
   tags = params['post']['tags'].split(/[\s,]+/)
   tags.map! do |tag| 
     Tag.create(:name => tag)
@@ -28,8 +28,7 @@ post '/posts' do #create
   if @post.save
     session['message'] = "Post \"#{@post.title}\" created."
     @posts = Post.all
-    erb :posts  #should probably be redirecting but want to display error message
-                #so I decided to render the posts index
+    @post.to_json
   else
     session['message'] = "Post creation unsuccessful. Please try again."
     erb :posts_new
